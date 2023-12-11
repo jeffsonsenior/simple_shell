@@ -11,9 +11,11 @@
 #include <errno.h>
 #include <fcntl.h>
 
+#define DELIM " \t\n"
 
 
-
+/* tokenization.c */
+char **tokenize(char *input_line);
 
 
 
