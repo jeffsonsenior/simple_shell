@@ -17,6 +17,11 @@
 /* tokenization.c */
 char **tokenize(char *input_line);
 
+/* execute */
+char *read_line(void);
+int _run_command(char **input_line, char **cmd_args, int command_index);
+void free_string_array(char *array);
+
 
 
 
