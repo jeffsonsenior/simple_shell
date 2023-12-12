@@ -22,9 +22,10 @@ char *read_line(void);
 int _run_command(char **input_line, char **cmd_args, int command_index);
 void free_string_array(char *array);
 
+/* environment */
+extern char **environ;
 
-
-
+char *_getenv(char *var);
 
 
 
