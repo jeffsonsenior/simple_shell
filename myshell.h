@@ -28,6 +28,16 @@ extern char **environ;
 char *_getenv(char *var);
 
 
+/*strings.c */
+char *_strcpy(char *dest, char *src);
+char *_strcat(char *dest, charv*src);
+int _strlen(char *s);
+int _strcmp(char *s1, char *s2);
+char *_strcmp(const char *str);
+
+
+/* getpath.c */
+char *getpath(char cmd_args)
 
 
 
