@@ -8,16 +8,16 @@
  *
  * Return: 0
  */
-int _run_command(char **input_line, char **cmd_args, int command_index)
+int _run_command(char **cmd_args, char **cmd_argv, int command_index)
 {
 	char *full_cmd;
 	pid_t child;
 	int status;
 
-	full_cmd = _getpath(cmd_args[0]);
+	full_cmd = getpath(cmd_args[0]);
 	if (!full_cmd)
 	{
-		perror(input_line[0], cmd_args[0], command_index);
+		_perror(cmd_argv[0], cmd_args[0], command_index);
 		free_string_array(cmd_args);
 		return (127);
 	}
@@ -37,4 +37,4 @@ int _run_command(char **input_line, char **cmd_args, int command_index)
 		free(full_cmd), full_cmd = NULL;
 	}
 	return (WEXITSTATUS(status));
-
+}

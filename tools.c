@@ -31,7 +31,7 @@ int custom_atoi(char *str)
 	for (i = 0; str[i]; i++)
 	{
 		number *= 10;
-		number += (str[i] - '0')
+		number += (str[i] - '0');
 	}
 	return (number);
 }

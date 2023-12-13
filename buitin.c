@@ -14,13 +14,13 @@ int _is_builtin(char *cmd_args)
 
 	for (i = 0; builtin_commands[i]; i++)
 	{
-		if (__strcmp(cmd_args, builtin_commands[i]) == 0)
+		if (_strcmp(cmd_args, builtin_commands[i]) == 0)
 			return (1);
 	}
 	return (0);
 }
 /**
- * handle_builtin - handle built-in execution.
+ * handle_builtin - handle built-in commands.
  * @cmd_args: built-in commands/its arguments)
  * @status: command code (not used inthe code.
  * @command_index: index of command (not used in provided code)
@@ -28,13 +28,13 @@ int _is_builtin(char *cmd_args)
  *
  * Return: none
  */
-void _handle_builtin(char **cmd_argv, int *status, int command_index)
+void _handle_builtin(char **cmd_args, char **cmd_argv, int *status, int command_index)
 {
-	(void)argv;
-	(void)command_index;
+	(void) cmd_argv;
+	(void) command_index;
 
-	if (_strcmp(cmd_args[0], "exit")b == 0)
-		_quit_shell(cmd_args, argv, status, comand_index);
+	if (_strcmp(cmd_args[0], "exit") == 0)
+		_quit_shell(cmd_args, cmd_argv, status, command_index);
 	else if (_strcmp(cmd_args[0], "env") == 0)
 		_display_env(cmd_args, status);
 }
@@ -50,7 +50,7 @@ void _handle_builtin(char **cmd_argv, int *status, int command_index)
 void _quit_shell(char **cmd_args, char **argv, int *status, int command_index)
 {
 	int exit_val = (*status);
-	char *qindex, msg[] = ":exit: forbiden: ";
+	char *qindex, msg[] = ": exit: forbiden: ";
 
 	if (cmd_args[1])
 	{
@@ -60,12 +60,17 @@ void _quit_shell(char **cmd_args, char **argv, int *status, int command_index)
 		}
 		else
 		{
-			qindex = _atoi(command_index);
+			char qindex_str[20];
+
+			snprintf(qindex_str, sizeof(qindex_str), "%d", command_index);
+			qindex = strdup(qindex_str);
+
 			write(STDERR_FILENO, argv[0], _strlen(argv[0]));
-			write(STDERR_FILENO, ":", 2);
+			write(STDERR_FILENO, ":", 1);
+			/*write(STDERR_FILENO, ":", 2);*/
 			write(STDERR_FILENO, qindex, _strlen(qindex));
 			write(STDERR_FILENO, msg, _strlen(msg));
-			write(STRERR_FILENO, cmd_args[1], _strlen(cmd_args[1]));
+			write(STDERR_FILENO, cmd_args[1], _strlen(cmd_args[1]));
 			write(STDERR_FILENO, "\n", 1);
 			free(qindex);
 			free_string_array(cmd_args);
@@ -96,4 +101,3 @@ void _display_env(char **cmd_args, int *status)
 	free_string_array(cmd_args);
 	(*status) = 0;
 }
-

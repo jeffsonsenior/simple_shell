@@ -28,13 +28,14 @@ void free_string_array(char **array)
  *
  * Return:0
  */
+/*char *_atoi(int n)*/
 void _perror(char *name, char *cmd_args, int command_index)
 {
 	char *idx, msg[] = ": not found\n";
 
-	idx = _atoi(command_idex);
+	idx = _atoi(command_index);
 
-	write(STDERR_FILENO, name, _stlen(name));
+	write(STDERR_FILENO, name, _strlen(name));
 	write(STDERR_FILENO, ": ", 2);
 	write(STDERR_FILENO, idx, _strlen(idx));
 	write(STDERR_FILENO, ": ", 2);
@@ -50,7 +51,7 @@ void _perror(char *name, char *cmd_args, int command_index)
  *
  * Return: 0
  */
-char *_atio(int n)
+char *_atoi(int n)
 {
 	char buffer[200];
 	int i = 0;
@@ -91,7 +92,7 @@ void reverse_string(char *str, int len)
 	{
 		tmp = str[start];
 		str[start] = str[end];
-		start[end] = tmp;
+		str[end] = tmp;
 		start++;
 		end--;
 	}

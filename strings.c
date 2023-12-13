@@ -18,11 +18,11 @@ char *_strdup(const char *str)
 	while (*str++)
 		length++;
 	/* allocating memory for a new string of the same lenth */
-	ret = malloc(sizeof(char) * (lenth + 1));
+	ret = malloc(sizeof(char) * (length + 1));
 	if (!ret)
 		return (NULL);
 	/* coppying the character in reverse order */
-	for length++; length--;
+	for (length++; length--;)
 	ret[length] = *--str;
 	return (ret);
 }
@@ -47,6 +47,8 @@ int _strcmp(char *s1, char *s2)
 	}
 	/* strings are equal upto the NULL terminator */
 	if (*s1 == *s2)
+		return (0);
+	else
 		return (*s1 < *s2 ? -1 : 1);
 }
 
@@ -61,11 +63,11 @@ int _strlen(char *s)
 {
 	int i = 0;
 	/*checking if is a null pointer */
-	if (!S)
-		return (0)
-			/* counting the characters untill null terminator is achived */
-			while (*s++)
-				i++;
+	if (!s)
+		return (0);
+	/* counting the characters untill null terminator is achived */
+	while (*s++)
+		i++;
 	return (i);
 }
 
@@ -96,7 +98,7 @@ char *_strcat(char *dest, char *src)
  * Return: pointer to the destination
  */
 
-char _strcpy(char *dest, char *src);
+char *_strcpy(char *dest, char *src)
 {
 	int i = 0;
 	/* check overlapping strings or null sources */
@@ -112,7 +114,3 @@ char _strcpy(char *dest, char *src);
 	dest[i] = 0;
 	return (dest);
 }
-
-
-
-
