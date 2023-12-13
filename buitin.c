@@ -60,14 +60,10 @@ void _quit_shell(char **cmd_args, char **argv, int *status, int command_index)
 		}
 		else
 		{
-			char qindex_str[20];
-
-			snprintf(qindex_str, sizeof(qindex_str), "%d", command_index);
-			qindex = strdup(qindex_str);
+			qindex = _atoi(command_index);
 
 			write(STDERR_FILENO, argv[0], _strlen(argv[0]));
-			write(STDERR_FILENO, ":", 1);
-			/*write(STDERR_FILENO, ":", 2);*/
+			write(STDERR_FILENO, ":", 2);
 			write(STDERR_FILENO, qindex, _strlen(qindex));
 			write(STDERR_FILENO, msg, _strlen(msg));
 			write(STDERR_FILENO, cmd_args[1], _strlen(cmd_args[1]));
