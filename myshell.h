@@ -13,6 +13,7 @@
 
 #define DELIM " \t\n"
 
+#define MAX_COMMAND_LENGTH 200;
 
 extern char **environ;
 
@@ -22,7 +23,7 @@ char **tokenize(char *input_line);
 
 /* execute.c */
 char *read_line(void);
-int _run_command(char **cmd_args, char **argv, int command_index);
+int _run_command(char **cmd_args, char **cmd_argv, int command_index);
 void free_string_array(char **array);
 
 /* getenv.c */

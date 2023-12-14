@@ -7,11 +7,11 @@
  * Return: 0 success, -1 on error.
  */
 
-int main(int argc, char **argv)
+int main(int cmd_argc, char **cmd_argv)
 {
 	char *input_line = NULL, **cmd_args = NULL;
 	int status = 0, command_index = 0;
-	(void)argc;
+	(void)cmd_argc;
 
 	while (1)
 	{
@@ -27,9 +27,9 @@ int main(int argc, char **argv)
 		if (!cmd_args)
 			continue;
 		if (_is_builtin(cmd_args[0]))
-		_handle_builtin(cmd_args, argv, &status, command_index);
+		_handle_builtin(cmd_args, cmd_argv, &status, command_index);
 		else
-			status = _run_command(cmd_args, argv, command_index);
+			status = _run_command(cmd_args, cmd_argv, command_index);
 	}
 }
 
