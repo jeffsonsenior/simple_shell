@@ -13,14 +13,13 @@ char *read_line(void)
 	size_t len = 0;
 	ssize_t charsRead;
 
-if (isatty(STDIN_FILENO))
-	write(STDOUT_FILENO, "$", 2);
-charsRead = getline(&line, &len, stdin);
-if (charsRead == -1)
-{
-	free(line);
-	perror("error reading fron input");
-	return (NULL);
-}
-return (line);
+	if (isatty(STDIN_FILENO))
+		write(STDOUT_FILENO, "$", 2);
+	charsRead = getline(&line, &len, stdin);
+       	if (charsRead == -1)
+	{
+		free(line);
+		return (NULL);
+	}
+	return (line);
 }
