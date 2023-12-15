@@ -10,8 +10,8 @@
 char **tokenize(char *input_line)
 {
 	char *token = NULL, *tmp = NULL;
-	char **cmd_args = NULL;
-	int cpt = 0, command_index = 0;
+	char **comd = NULL;
+	int cpt = 0, idx = 0;
 
 	if (!input_line)
 		return (NULL);
@@ -31,8 +31,8 @@ char **tokenize(char *input_line)
 	}
 	free(tmp), tmp = NULL;
 
-	cmd_args = malloc(sizeof(char *) * (cpt + 1));
-	if (!cmd_args)
+	comd = malloc(sizeof(char *) * (cpt + 1));
+	if (!comd)
 	{
 		free(input_line), input_line = NULL;
 		return (NULL);
@@ -40,13 +40,12 @@ char **tokenize(char *input_line)
 	token = strtok(input_line, DELIM);
 	while (token)
 	{
-		cmd_args[command_index] = _strdup(token);
+		comd[idx] = _strdup(token);
 		token = strtok(NULL, DELIM);
-		command_index++;
+		idx++;
 	}
 	free(input_line), input_line = NULL;
-	cmd_args[command_index] = NULL;
+	comd[idx] = NULL;
 
-	return (cmd_args);
+	return (comd);
 }
-

@@ -7,13 +7,13 @@
  */
 int num_is_pos(char *str)
 {
-	int i;
+	int idx;
 
 	if (!str)
 		return (0);
-	for (i = 0; str[i]; i++)
+	for (idx = 0; str[idx]; idx++)
 	{
-		if (str[i] < '0' || str[i] > '9')
+		if (str[idx] < '0' || str[idx] > '9')
 			return (0);
 	}
 	return (1);
@@ -26,12 +26,12 @@ int num_is_pos(char *str)
  */
 int custom_atoi(char *str)
 {
-	int i, number = 0;
+	int idx, number = 0;
 
-	for (i = 0; str[i]; i++)
+	for (idx = 0; str[idx]; idx++)
 	{
 		number *= 10;
-		number += (str[i] - '0');
+		number += (str[idx] - '0');
 	}
 	return (number);
 }

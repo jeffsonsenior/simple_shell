@@ -13,7 +13,6 @@
 
 #define DELIM " \t\n"
 
-#define MAX_COMMAND_LENGTH 200;
 
 extern char **environ;
 
@@ -23,7 +22,7 @@ char **tokenize(char *input_line);
 
 /* execute.c */
 char *read_line(void);
-int _run_command(char **cmd_args, char **cmd_argv, int command_index);
+int _run_command(char **comd, char **cmd_argv, int cmd_index);
 void free_string_array(char **array);
 
 /* getenv.c */
@@ -38,18 +37,18 @@ int _strcmp(char *s1, char *s2);
 char *_strdup(const char *str);
 
 /* getpath.c */
-char *getpath(char *cmd_args);
+char *getpath(char *comd);
 
 /* myutils.c */
-void _perror(char *name, char *cmd_args, int command_index);
+void _perror(char *name, char *comd, int cmd_index);
 char *_atoi(int n);
 void reverse_string(char *str, int len);
 
 /* buitin */
-void _display_env(char **cmd_args, int *status);
-void _quit_shell(char **cmd_args, char **cmd_argv, int *status,int command_index);
-void _handle_builtin(char **cmd_args, char **cmd_argv, int *status, int command_index);
-int _is_builtin(char *cmd_args);
+void _display_env(char **comd, int *status);
+void _quit_shell(char **comd, char **cmd_argv, int *status, int cmd_index);
+void _handle_builtin(char **comd, char **cmd_argv, int *status, int cmd_index);
+int _is_builtin(char *comd);
 
 /* tools */
 int custom_atoi(char *str);

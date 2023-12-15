@@ -1,8 +1,9 @@
 #include "myshell.h"
 
 /**
- * _getenv - gets the environment variables
+ * getenv - gets the environment variables.
  * @var: variable to be accured
+ *
  *
  * Return: always 0 on success
  */
@@ -10,11 +11,11 @@
 char *_getenv(char *var)
 {
 	char *tmp, *key, *value, *env;
-	int i;
+	int idx;
 
-	for (i = 0; environ[i]; i++)
+	for (idx = 0; environ[idx]; idx++)
 	{
-		tmp = _strdup(environ[i]);
+		tmp = _strdup(environ[idx]);
 		key = strtok(tmp, "=");
 		if (_strcmp(key, var) == 0)
 		{

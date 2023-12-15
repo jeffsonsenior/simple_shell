@@ -9,17 +9,17 @@
  */
 char *read_line(void)
 {
-	char *line = NULL;
+	char *input_line = NULL;
 	size_t len = 0;
-	ssize_t charsRead;
+	ssize_t idx;
 
 	if (isatty(STDIN_FILENO))
 		write(STDOUT_FILENO, "$", 2);
-	charsRead = getline(&line, &len, stdin);
-       	if (charsRead == -1)
+	idx = getline(&input_line, &len, stdin);
+	if (idx == -1)
 	{
-		free(line);
+		free(input_line);
 		return (NULL);
 	}
-	return (line);
+	return (input_line);
 }

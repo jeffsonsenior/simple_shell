@@ -8,14 +8,14 @@
  */
 void free_string_array(char **array)
 {
-	int i;
+	int idx;
 
 	if (!array)
 		return;
-	for  (i = 0; array[i]; i++)
+	for  (idx = 0; array[idx]; idx++)
 	{
-		free(array[i]);
-		array[i] = NULL;
+		free(array[idx]);
+		array[idx] = NULL;
 	}
 	free(array), array = NULL;
 }
@@ -23,26 +23,25 @@ void free_string_array(char **array)
 /**
  * _perror - print error msg to stdout.
  * @name: name of errant argument.
- * @cmd_args: command arguments
- * @command_index: error code.
+ * @comd: command
+ * @cmd_index: command error code.
  *
  * Return:0
  */
-/*char *_atoi(int n)*/
-void _perror(char *name, char *cmd_args, int command_index)
+void _perror(char *name, char *comd, int cmd_index)
 {
-	char *idx, msg[] = ": not found\n";
+	char *dx, msg[] = ": not found\n";
 
-	idx = _atoi(command_index);
+	dx = _atoi(cmd_index);
 
 	write(STDERR_FILENO, name, _strlen(name));
 	write(STDERR_FILENO, ": ", 2);
-	write(STDERR_FILENO, idx, _strlen(idx));
+	write(STDERR_FILENO, dx, _strlen(dx));
 	write(STDERR_FILENO, ": ", 2);
-	write(STDERR_FILENO, cmd_args, _strlen(cmd_args));
+	write(STDERR_FILENO, comd, _strlen(comd));
 	write(STDERR_FILENO, msg, _strlen(msg));
 
-	free(idx);
+	free(dx);
 }
 
 /**
@@ -53,24 +52,24 @@ void _perror(char *name, char *cmd_args, int command_index)
  */
 char *_atoi(int n)
 {
-	char buffer[200];
-	int i = 0;
+	char buffer[20];
+	int idx = 0;
 
 	if (n == 0)
 
 
-		buffer[i++] = '\0';
+		buffer[idx++] = '\0';
 	else
 	{
 		while (n > 0)
 		{
-			buffer[i++] = (n % 10) + '0';
+			buffer[idx++] = (n % 10) + '0';
 			n /= 10;
 		}
 	}
 
-	buffer[i] = '\0';
-	reverse_string(buffer, i);
+	buffer[idx] = '\0';
+	reverse_string(buffer, idx);
 	return (_strdup(buffer));
 }
 

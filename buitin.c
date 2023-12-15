@@ -2,98 +2,102 @@
 
 /**
  * is_builtin - check if a given command is a built-in command.
- * @cmd_args: the command and its arguments.
+ * @comd : the command and its arguments.
  *
  * Return: 1 if the command id built-in,else 0 if not built-in
  */
 
-int _is_builtin(char *cmd_args)
+int _is_builtin(char *comd)
 {
 	char *builtin_commands[] = { "exit", "env", "setenv", "cd", NULL};
-	int i;
+	int idx;
 
-	for (i = 0; builtin_commands[i]; i++)
+	for (idx = 0; builtin_commands[idx]; idx++)
 	{
-		if (_strcmp(cmd_args, builtin_commands[i]) == 0)
+		if (_strcmp(comd, builtin_commands[idx]) == 0)
 			return (1);
 	}
 	return (0);
 }
 /**
  * handle_builtin - handle built-in commands.
- * @cmd_args: built-in commands/its arguments)
+ * @comd: built-in commands/its arguments)
+ * cmd_argv: argument arrays
  * @status: command code (not used inthe code.
- * @command_index: index of command (not used in provided code)
+ * @command_index: index of command,not used in provided code it is (void)
  *
  *
- * Return: none
+ * Return: 0 meaning none.
  */
-void _handle_builtin(char **cmd_args, char **cmd_argv, int *status, int command_index)
+void _handle_builtin(char **comd, char **cmd_argv, int *status, int cmd_index)
 {
 	(void) cmd_argv;
-	(void) command_index;
+	(void) cmd_index;
 
-	if (_strcmp(cmd_args[0], "exit") == 0)
-		_quit_shell(cmd_args, cmd_argv, status, command_index);
-	else if (_strcmp(cmd_args[0], "env") == 0)
-		_display_env(cmd_args, status);
+	if (_strcmp(comd[0], "exit") == 0)
+		_quit_shell(comd, cmd_argv, status, cmd_index);
+	else if (_strcmp(comd[0], "env") == 0)
+		_display_env(comd, status);
 }
 /**
  * _quit_shell - Exits the shell interactive mood
- * @cmd_args: command argument
- * @argv: argument array
+ * @comd : exit command
+ * @cmd_argv: argument array
  * @status: exit shell
+ * command_index : void
  * @command_index: index of the command
  *
- * Return: none.
+ * Return: (0) none.
  */
-void _quit_shell(char **cmd_args, char **argv, int *status, int command_index)
+void _quit_shell(char **comd, char **cmd_argv, int *status, int cmd_index)
 {
 	int exit_val = (*status);
-	char *qindex, msg[] = ": exit: forbiden: ";
+	char *index, msg[] = ": exit: forbiden: ";
 
-	if (cmd_args[1])
+	if (comd[1])
 	{
-		if (num_is_pos(cmd_args[1]))
+		if (num_is_pos(comd[1]))
 		{
-			exit_val = custom_atoi(cmd_args[1]);
+			exit_val = custom_atoi(comd[1]);
 		}
 		else
 		{
-			qindex = _atoi(command_index);
+			index = _atoi(cmd_index);
 
-			write(STDERR_FILENO, argv[0], _strlen(argv[0]));
+			write(STDERR_FILENO, cmd_argv[0], _strlen(cmd_argv[0]));
 			write(STDERR_FILENO, ":", 2);
-			write(STDERR_FILENO, qindex, _strlen(qindex));
+			write(STDERR_FILENO, index, _strlen(index));
 			write(STDERR_FILENO, msg, _strlen(msg));
-			write(STDERR_FILENO, cmd_args[1], _strlen(cmd_args[1]));
+			write(STDERR_FILENO, comd[1], _strlen(comd[1]));
 			write(STDERR_FILENO, "\n", 1);
-			free(qindex);
-			free_string_array(cmd_args);
+			free(index);
+			free_string_array(comd);
 			(*status) = 2;
 			return;
 		}
 	}
-	free_string_array(cmd_args);
+	free_string_array(comd);
 	exit(exit_val);
 }
 
 /**
  * _display_env - prints the environment variables
- * @cmd_args: command and arguments to print
+ * @comd: command and arguments to print
  * status: void
- * * Return: None
+ *
+ *
+ * Return:(0)  None.
  */
-void _display_env(char **cmd_args, int *status)
+void _display_env(char **comd, int *status)
 {
-	int i;
+	int idx;
 
-	for (i = 0; environ[i]; i++)
+	for (idx = 0; environ[idx]; idx++)
 
 	{
-		write(STDOUT_FILENO, environ[i], _strlen(environ[i]));
+		write(STDOUT_FILENO, environ[idx], _strlen(environ[idx]));
 		write(STDOUT_FILENO, "\n", 1);
 	}
-	free_string_array(cmd_args);
+	free_string_array(comd);
 	(*status) = 0;
 }

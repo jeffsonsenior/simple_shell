@@ -61,14 +61,14 @@ int _strcmp(char *s1, char *s2)
 
 int _strlen(char *s)
 {
-	int i = 0;
+	int idx = 0;
 	/*checking if is a null pointer */
 	if (!s)
 		return (0);
 	/* counting the characters untill null terminator is achived */
 	while (*s++)
-		i++;
-	return (i);
+		idx++;
+	return (idx);
 }
 
 /**
@@ -100,17 +100,17 @@ char *_strcat(char *dest, char *src)
 
 char *_strcpy(char *dest, char *src)
 {
-	int i = 0;
+	int idx = 0;
 	/* check overlapping strings or null sources */
 	if (dest == src || src == 0)
 		return (dest);
 	/* coppy characters until null termination is attain */
-	while (src[i])
+	while (src[idx])
 	{
-		dest[i] = src[i];
-		i++;
+		dest[idx] = src[idx];
+		idx++;
 	}
 	/* proper null termination */
-	dest[i] = 0;
+	dest[idx] = 0;
 	return (dest);
 }
