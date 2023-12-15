@@ -25,7 +25,7 @@ char *getpath(char *comd)
 		}
 	}
 	/* check '/' in the path if command argument dont contain */
-	env_path = getenv("PATH");
+	env_path =_getenv("PATH");
 	if (!env_path)
 		return (NULL);
 	dir = strtok(env_path, ":");
