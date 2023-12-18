@@ -43,7 +43,7 @@ char *getpath(char *comd)
 				return (full_cmd);
 			}
 			/* free memory and reset full_cmd to NULL */
-			free(full_cmd), full_cmd = NULL;
+			free(full_cmd);
 			dir = strtok(NULL, ":");
 		}
 	}
