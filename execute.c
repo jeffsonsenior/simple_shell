@@ -4,7 +4,7 @@
  * Run_command - execute commands being parsed
  * @comd: command being executed
  * @cmd_args: arrays of arguments that follow the command
- * @command_index: index of the command
+ * @cmd__index: index of the command
  *
  * Return: 0 on success. none
  */

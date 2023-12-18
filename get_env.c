@@ -24,8 +24,7 @@ char *_getenv(char *var)
 			free(tmp);
 			return (env);
 		}
-		free(tmp);
-		tmp = NULL;
+		free(tmp), tmp = NULL;
 	}
 	return (NULL);
 }

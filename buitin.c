@@ -1,7 +1,8 @@
 #include "myshell.h"
 
 /**
- * is_builtin - check if a given command is a built-in command.
+ * is_builtin - creat a storage of native commands.and check
+ * if its a builtin command
  * @comd : the command and its arguments.
  *
  * Return: 1 if the command id built-in,else 0 if not built-in
@@ -24,7 +25,7 @@ int _is_builtin(char *comd)
  * @comd: built-in commands/its arguments)
  * cmd_argv: argument arrays
  * @status: command code (not used inthe code.
- * @command_index: index of command,not used in provided code it is (void)
+ * @cmd_index: index of command,not used in provided code it is (void)
  *
  *
  * Return: 0 meaning none.
