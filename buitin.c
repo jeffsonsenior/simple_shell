@@ -1,8 +1,7 @@
 #include "myshell.h"
 
 /**
- * is_builtin - creat a storage of native commands.and check
- * if its a builtin command
+ * _is_builtin - check if its a built-in command.
  * @comd : the command and its arguments.
  *
  * Return: 1 if the command id built-in,else 0 if not built-in
@@ -21,7 +20,7 @@ int _is_builtin(char *comd)
 	return (0);
 }
 /**
- * handle_builtin - handle built-in commands.
+ * _handle_builtin - handle built-in commands.
  * @comd: built-in commands/its arguments)
  * cmd_argv: argument arrays
  * @status: command code (not used inthe code.
@@ -63,7 +62,7 @@ void _quit_shell(char **comd, char **cmd_argv, int *status, int cmd_index)
 		}
 		else
 		{
-			index = _atoi(cmd_index);
+			index = _atoi(comd[0]);
 
 			write(STDERR_FILENO, cmd_argv[0], _strlen(cmd_argv[0]));
 			write(STDERR_FILENO, ":", 2);

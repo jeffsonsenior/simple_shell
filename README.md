@@ -1,1 +1,1 @@
-the implementation of simple_shell
+this is a simple shell project 0x16.
