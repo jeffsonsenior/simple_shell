@@ -44,15 +44,15 @@ void _handle_builtin(char **comd, char **cmd_argv, int *status, int cmd_index)
  * @comd : exit command
  * @cmd_argv: argument array
  * @status: exit shell
- * command_index : void
- * @command_index: index of the command
+ * @cmd_index: index of the command
  *
  * Return: (0) none.
  */
 void _quit_shell(char **comd, char **cmd_argv, int *status, int cmd_index)
 {
 	int exit_val = (*status);
-	char *index, msg[] = ": exit: forbiden: ";
+	char *index = NULL;
+	const char msg[] = ": exit: illegal number: ";
 
 	if (comd[1])
 	{
@@ -62,7 +62,7 @@ void _quit_shell(char **comd, char **cmd_argv, int *status, int cmd_index)
 		}
 		else
 		{
-			index = _atoi(comd[0]);
+			index = _atoi(cmd_index);
 
 			write(STDERR_FILENO, cmd_argv[0], _strlen(cmd_argv[0]));
 			write(STDERR_FILENO, ":", 2);

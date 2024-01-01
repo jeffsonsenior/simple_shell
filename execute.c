@@ -1,12 +1,11 @@
 #include "myshell.h"
-
 /**
- * Run_command - execute commands being parsed
+ * _run_command - execute commands being parsed
  * @comd: command being executed
  * @cmd_args: arrays of arguments that follow the command
  * @cmd__index: index of the command
  *
- * Return: 0 on success. none
+ * Return: 0 on success
  */
 int _run_command(char **comd, char **cmd_argv, int cmd_index)
 {
@@ -23,6 +22,7 @@ int _run_command(char **comd, char **cmd_argv, int cmd_index)
 	}
 	child = fork();
 	if (child == 0)
+
 	{
 		if (execve(full_cmd, comd, environ) == -1)
 		{

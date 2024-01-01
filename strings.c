@@ -59,7 +59,7 @@ int _strcmp(char *s1, char *s2)
  * Return: interger length of a string
  */
 
-int _strlen(char *s)
+int _strlen(const char *s)
 {
 	int idx = 0;
 	/*checking if is a null pointer */
