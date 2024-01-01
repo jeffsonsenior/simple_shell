@@ -9,6 +9,10 @@
 
 int _is_builtin(char *comd)
 {
+	if (comd[0] == '#')
+	{
+		return (0);
+	}
 	char *builtin_commands[] = { "exit", "env", "setenv", "cd", NULL};
 	int idx;
 

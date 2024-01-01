@@ -48,7 +48,7 @@ int _setenv(char *var, char *val)
 	}
 	else
 	{
-		if (setenv(var, val, 1) != 0)
+		if (_setenv(var, val, 1) != 0)
 		{
 			write(STDERR_FILENO, "setenv: enviroment var not ser\n", 41);
 			return (-1);
@@ -67,7 +67,7 @@ int _unsetenv(char *var)
 {
 	if (_getenv(var) != NULL)
 	{
-		if (unsetenv(var) != 0)
+		if (_unsetenv(var) != 0)
 		{
 			write(STDERR_FILENO, "unsetenv: environment var not unset\n", 45);
 			return (-1);
