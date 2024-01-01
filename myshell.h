@@ -27,6 +27,8 @@ void free_string_array(char **array);
 
 /* getenv.c */
 char *_getenv(char *var);
+int _setenv(char *var, char *val);
+int _unsetenv(char *var);
 
 
 /*strings.c */

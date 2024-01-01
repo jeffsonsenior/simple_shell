@@ -5,7 +5,7 @@
  * @var: variable to be accured
  *
  *
- * Return: always 0 on success
+ *Return value of environment var, NULL if not found.
  */
 
 char *_getenv(char *var)
@@ -27,4 +27,56 @@ char *_getenv(char *var)
 		free(tmp), tmp = NULL;
 	}
 	return (NULL);
+}
+/**
+ * _setenv - modify or set env var.
+ * @var: environment variables
+ * @val: assigned value.
+ *
+ * Return : 0 on success,else -1 if error occured.
+ */
+
+int _setenv(char *var, char *val)
+{
+	if (_getenv(var) != NULL)
+	{
+		if (setenv(var, val, 1) != 0)
+		{
+		write(STDERR_FILENO, "setenv: environment var not set\n", 41);
+		return (-1);
+		}
+	}
+	else
+	{
+		if (setenv(var, val, 1) != 0)
+		{
+			write(STDERR_FILENO, "setenv: enviroment var not ser\n", 41);
+			return (-1);
+		}
+	}
+	return (0);
+}
+
+/**
+ * _unsetenv - erase environment var.
+ * @var: env variable to erase
+ *
+ * Return: 0 on success,else -1 if error occured.
+ */
+int _unsetenv(char *var)
+{
+	if (_getenv(var) != NULL)
+	{
+		if (unsetenv(var) != 0)
+		{
+			write(STDERR_FILENO, "unsetenv: environment var not unset\n", 45);
+			return (-1);
+		}
+	}
+	else
+	{
+		write(STDERR_FILENO, "unsetenv: env var not found\n", 42);
+		return (-1);
+	}
+	return (0);
 }
